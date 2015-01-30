@@ -1,0 +1,25 @@
+<% if todo.deadline.nil? %>
+  <div class="well">
+<% elsif lights(todo.deadline) == :red %>
+  <div class="well red">
+<% elsif lights(todo.deadline) == :amber %>
+  <div class="well amber">
+<% else %>
+  <div class="well green">
+<% end %>
+    <p class="pull-right">
+      <%= link_to 'edit', edit_todo_path(todo), class: 'btn' %>
+    </p>
+    <h2><%= link_to todo.title, todo_path(todo) %></h2>
+    <p><%= todo.description %></p>
+    <% if todo.deadline %>
+      <p>Deadline: <%= time_left(todo.deadline) %></p>
+    <% else %>
+      <p>No deadline</p>
+    <% end %>
+    <p>Notes: <span class="badge"><%= todo.comments.count %></span></p>
+    <% todo.categories.each do |category| %>
+      <span class="label label-info"><%= link_to category.name, category_path(category) %></span>
+    <% end %>
+    
+</div>

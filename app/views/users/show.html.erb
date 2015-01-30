@@ -1,0 +1,7 @@
+<%= render 'shared/content_title', title: "You are viewing: #{@profile.username}" %>
+
+<% if @profile == @user %>
+  <%= render 'form' %>
+<% else %>
+  <%= render 'profile_form' %>
+<% end %>

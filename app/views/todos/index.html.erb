@@ -1,0 +1,32 @@
+
+
+ <div class="jumbotron">
+
+    <h1>GotToDo</h1>
+    <% if logged_in? %>
+      <%= link_to new_todo_path, class: 'btn btn-lg btn-success' do %>
+        <span class="glyphicon glyphicon-pencil" ></span> Add ToDo
+      <% end %>
+    <% end %>
+    <% unless logged_in? %>
+      <p>A place to organize all your tasks. Create, View, Edit and generally manage everything you have to do. Ready to get started?...</p>
+
+      <%= link_to register_path, class: 'btn btn-lg btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil" ></span> Register
+      <% end %>
+      <%= link_to login_path, class: 'btn btn-lg btn-success' do %>
+      <span class="glyphicon glyphicon-pencil" ></span> Login
+      <% end %>
+    <% end %>
+
+  </div>
+
+
+  <% if logged_in? %>
+    <% @todos.each do |todo| %>
+      <%= render 'todos/todo', todo: todo %>
+    <% end %>
+  <% end %>
+   
+
+

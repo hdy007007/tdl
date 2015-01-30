@@ -1,0 +1,7 @@
+<% header = link_to('All todos', todos_path) + " &raquo; #{@category.name}".html_safe %>
+
+<%= render 'shared/content_title', title: header %>
+
+<% @category.todos.each do |todo| %>
+  <%= render 'todos/todo', todo: todo %>
+<% end %>
