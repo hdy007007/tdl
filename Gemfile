@@ -41,6 +41,14 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :test, :development do 
+  gem 'minitest'
+  gem 'rspec-rails', '2.13.1'
+end
+
+group :test do
+  gem 'capybara', '2.1.0'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
