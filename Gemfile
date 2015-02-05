@@ -16,6 +16,8 @@ gem 'font-awesome-rails', '4.3.0.0'
 gem 'autoprefixer-rails'
 gem 'bcrypt-ruby'
 
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
