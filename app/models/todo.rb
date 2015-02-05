@@ -14,4 +14,8 @@ class Todo < ActiveRecord::Base
     end
   end
 
+  def self.order_by_deadline
+    order('deadline IS NULL, deadline ASC')
+  end
+
 end
