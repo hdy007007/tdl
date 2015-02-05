@@ -1,0 +1,12 @@
+<%= render 'shared/content_title', title: 'Latest feature requests' %>
+
+<% @features.each do |feature| %>
+  <div class="row">
+    <div class="well">
+      <p class="text-center"><i class="fa fa-bullhorn"></i></p>
+      <p>Title: <%= feature.title %></p>
+      <p>Description: <%= feature.description %></p>
+      <p>Thanks to: <%= feature.user.username %></p>
+    </div>
+  </div>
+<% end %> 

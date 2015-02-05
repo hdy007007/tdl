@@ -1,0 +1,12 @@
+<%= render 'shared/content_title', title: 'Current Bugs' %>
+
+<% @bugs.each do |bug| %>
+  <div class="row">
+    <div class="well">
+      <p class="text-center"><i class="fa fa-bug"></i></p>
+      <p>Title: <%= bug.title %></p>
+      <p>Description: <%= bug.description %></p>
+      <p>Reported by: <%= bug.user.username %></p>
+    </div>
+  </div>
+<% end %>

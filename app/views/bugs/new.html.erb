@@ -1,0 +1,27 @@
+<%= render 'shared/content_title', title: 'Tell us about a bug so we can put it outside' %>
+
+<div class="row text-center">
+  <p><i class="fa fa-bug fa-4x"></i></p>
+</div>
+
+<div class="well">
+  <%= form_for @bug, :html => {class: 'form-horizontal'} do |f| %>
+    <div class="form-group">
+      <%= f.label :title, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.text_field :title, class: 'form-control', autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.text_area :description, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit(@bug.new_record? ? "Report Bug" : "Update Bug", class: 'btn btn-default') %>
+      </div>
+    </div>
+  <% end %>
+</div>

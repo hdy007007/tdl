@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   has_many :todos
   has_many :comments
+  has_many :bugs
+  has_many :features
 
   has_many :user_categories
   has_many :categories, through: :user_categories
