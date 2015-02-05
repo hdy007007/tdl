@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/register', to: 'users#new'
+  post '/todos/:id/complete', to: 'todos#complete', as: :complete_todo
 
   resources :users, only: [:show, :create, :edit, :update]
 

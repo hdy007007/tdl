@@ -24,7 +24,9 @@
 
   <% if logged_in? %>
     <% @todos.order_by_deadline.each do |todo| %>
-      <%= render 'todos/todo', todo: todo %>
+      <% unless todo.done %>
+        <%= render 'todos/todo', todo: todo %>
+      <% end %>
     <% end %>
   <% end %>
    

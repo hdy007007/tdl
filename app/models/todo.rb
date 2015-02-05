@@ -18,4 +18,8 @@ class Todo < ActiveRecord::Base
     order('deadline IS NULL, deadline ASC')
   end
 
+  def todo_done?
+    done
+  end
+
 end

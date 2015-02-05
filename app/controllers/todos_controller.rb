@@ -1,6 +1,6 @@
 class TodosController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
-  before_action :set_user, only: [:index, :show, :edit, :new, :create]
+  before_action :set_post, only: [:show, :edit, :update, :complete]
+  before_action :set_user, only: [:index, :show, :edit, :new, :create, :complete]
 
   before_action :require_user, except: [:index]
 
@@ -38,6 +38,13 @@ class TodosController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def complete
+    flash[:notice] = 'Todo completed!'
+    @todo.done = true
+    @todo.save
+    redirect_to root_path
   end
 
   def destroy

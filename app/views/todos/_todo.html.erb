@@ -8,8 +8,12 @@
   <div class="well green">
 <% end %>
     <p class="pull-right">
-      <%= link_to 'edit', edit_todo_path(todo), class: 'btn' %>
-      <%= link_to 'delete', todo_path(todo), class: 'btn', method: :delete, data: {confirm: "Are you sure you want to delete #{todo.title}"} %>
+      <%= link_to edit_todo_path(todo), class: 'btn' do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to todo_path(todo), class: 'btn', method: :delete, data: {confirm: "Are you sure you want to delete #{todo.title}"} do %>
+        <i class="fa fa-trash-o"></i>
+      <% end %>
     </p>
     <h2><%= link_to todo.title, todo_path(todo) %></h2>
     <p><%= todo.description %></p>
@@ -22,5 +26,9 @@
     <% todo.categories.each do |category| %>
       <span class="label label-info"><%= link_to category.name, category_path(category) %></span>
     <% end %>
-    
+    <div class="pull-right">  
+      <%= link_to complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button', data: {confirm: "Are you sure you want to mark #{todo.title} as done?"} do %>
+        <span class="glyphicon glyphicon-check" ></span> done
+      <% end %>
+    </div>
 </div>
