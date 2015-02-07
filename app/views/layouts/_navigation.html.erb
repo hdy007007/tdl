@@ -86,6 +86,7 @@
 
           </li>
           <li><%= link_to 'Add Todo', new_todo_path, class: '' %></li>         
+          <li><%= link_to 'Completed Todos', todos_completed_path, class: '' %></li>         
         <% else %> 
           <li><%= link_to 'Log in', login_path, class: '' %></li> 
         <% end %>

@@ -1,12 +1,16 @@
 class TodosController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :complete]
-  before_action :set_user, only: [:index, :show, :edit, :new, :create, :complete]
+  before_action :set_user, only: [:index, :show, :edit, :new, :create, :complete, :completed]
 
   before_action :require_user, except: [:index]
 
 
   def index
     @todos = @user.todos.all if @user
+  end
+
+  def completed
+    @todos = @user.todos.all
   end
 
   def new

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get '/register', to: 'users#new'
   post '/todos/:id/complete', to: 'todos#complete', as: :complete_todo
+  get '/todos/completed', to: 'todos#completed'
 
   resources :users, only: [:show, :create, :edit, :update]
 
