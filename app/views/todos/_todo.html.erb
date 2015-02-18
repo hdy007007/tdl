@@ -10,24 +10,26 @@
 
     <p class="pull-right">
 
-      <% if todo.pinned? && todo.time_pinned == Date.today %>
-        <%= link_to unpin_todo_path(todo), method: :post, class: "btn btn-sm btn-default pinned", title: "Pinned for today. Click to unpin" do %>
-            <i class="fa fa-thumb-tack"></i>
-        <% end %>
-      <!-- Need to undo pin if pinned_date is not today and add to flow below -->
-      <% else %>
-        <%= link_to pinned_todo_path(todo), method: :post, class: "btn btn-sm btn-default", title: "Pin for today" do %>
-            <i class="fa fa-thumb-tack"></i>
+      <% unless todo.done %>
+        <% if todo.pinned? && todo.time_pinned == Date.today %>
+          <%= link_to unpin_todo_path(todo), method: :post, class: "btn btn-sm btn-default pinned", title: "Pinned for today. Click to unpin" do %>
+              <i class="fa fa-thumb-tack"></i>
+          <% end %>
+        <!-- Need to undo pin if pinned_date is not today and add to flow below -->
+        <% else %>
+          <%= link_to pinned_todo_path(todo), method: :post, class: "btn btn-sm btn-default", title: "Pin for today" do %>
+              <i class="fa fa-thumb-tack"></i>
+          <% end %>
         <% end %>
       <% end %>
 
       
       <% if todo.done? %>
-        <%= link_to not_complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button completed', data: {confirm: "Are you sure you want to mark #{todo.title} as NOT completed?"} do %>
+        <%= link_to not_complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button completed', title: "Click to reinstate todo", data: {confirm: "Are you sure you want to mark #{todo.title} as NOT completed?"} do %>
           <i class="fa fa-check"></i>
         <% end %>
       <% else %>
-        <%= link_to complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button', data: {confirm: "Are you sure you want to mark #{todo.title} as done?"} do %>
+        <%= link_to complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button', title: "Click to mark todo as done", data: {confirm: "Are you sure you want to mark #{todo.title} as done?"} do %>
           <i class="fa fa-check"></i>
         <% end %>
       <% end %>
@@ -42,10 +44,11 @@
     </p>
     <h5><%= link_to todo.title, todo_path(todo) %></h5>
     <div class="info clearfix pull-right">
-      <% if todo.deadline %>     
-        <p><%= time_left_in_words_short_version(todo.deadline) %></p>
-      <% end %>
-
+      <% unless todo.done %>
+        <% if todo.deadline %>     
+          <p><%= time_left_in_words_short_version(todo.deadline) %></p>
+        <% end %>
+      <% end %>  
       <p><%= notes_indicator(todo) %> <span class="badge"><%= todo.comments.count %></span></p>
     </div>  
     <i class="fa fa-tags" title="categories"></i>
