@@ -10,7 +10,7 @@
 
     <p class="pull-right">
 
-      <% if todo.pinned %>
+      <% if todo.pinned? %>
         <%= link_to unpin_todo_path(todo), method: :post, class: "btn btn-sm btn-default pinned" do %>
             <i class="fa fa-thumb-tack"></i>
         <% end %>
