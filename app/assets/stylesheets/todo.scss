@@ -5,6 +5,7 @@
 a.complete_button{
   border: 1px solid #5cb85c;
 }
+a.complete_button:hover{background-color: #5cb85c;}
 div.info p, div.info h5{margin: 0 0 0 10px; line-height: 30px; float: left;}
 div.todo_item {
   margin: 0 0 10px 0;
@@ -15,3 +16,5 @@ div.todo_item {
 div.todo_item p.pull-right{margin-bottom: 0;}
 a.pinned, a.completed{background-color: #5cb85c;}
 a.pinned i{color: white;}
+a.edit:hover {background-color: #f0ad4e;}
+a.destroy:hover {background-color: #d9534f;}
