@@ -13,5 +13,5 @@ div.todo_item {
   padding: 10px 5px;
 }
 div.todo_item p.pull-right{margin-bottom: 0;}
-a.pinned{background-color: #5cb85c;}
+a.pinned, a.completed{background-color: #5cb85c;}
 a.pinned i{color: white;}

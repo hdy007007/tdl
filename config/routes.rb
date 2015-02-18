@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get '/register', to: 'users#new'
   post '/todos/:id/complete', to: 'todos#complete', as: :complete_todo
+  post '/todos/:id/not_complete', to: 'todos#not_complete', as: :not_complete_todo
   get '/todos/completed', to: 'todos#completed'
 
   post 'todos/:id/pinned', to: 'todos#pinned', as: :pinned_todo

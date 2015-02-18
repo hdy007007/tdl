@@ -1,6 +1,6 @@
 class TodosController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :complete, :pinned, :unpin]
-  before_action :set_user, only: [:index, :show, :edit, :new, :create, :complete, :completed, :pinned, :unpin]
+  before_action :set_post, only: [:show, :edit, :update, :complete, :not_complete, :pinned, :unpin]
+  before_action :set_user, only: [:index, :show, :edit, :new, :create, :complete, :not_complete, :completed, :pinned, :unpin]
 
   before_action :require_user, except: [:index]
 
@@ -46,15 +46,21 @@ class TodosController < ApplicationController
 
   def complete
     flash[:notice] = 'Todo completed!'
-    @todo.done = true
-    @todo.save
+    @todo.update_attribute(:done, true)
     redirect_to root_path
+  end
+
+  def not_complete
+    flash[:notice] = 'Todo marked not complete and added back to your todo list!'
+    @todo.update_attribute(:done, false)
+    redirect_to root_path    
   end
 
   def pinned
     flash[:notice] = 'Todo pinned for today'
     @todo.pinned = true
     @todo.update_attribute(:pinned, true)
+    @todo.update_attribute(:time_pinned, Time.now)
     redirect_to root_path
   end
 
@@ -62,6 +68,7 @@ class TodosController < ApplicationController
     flash[:notice] = 'Todo unpinned'
     @todo.pinned = false
     @todo.update_attribute(:pinned, false)
+    @todo.update_attribute(:time_pinned, nil)
     redirect_to root_path    
   end
 

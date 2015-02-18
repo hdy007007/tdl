@@ -10,21 +10,29 @@
 
     <p class="pull-right">
 
-      <% if todo.pinned? %>
-        <%= link_to unpin_todo_path(todo), method: :post, class: "btn btn-sm btn-default pinned" do %>
+      <% if todo.pinned? && todo.time_pinned == Date.today %>
+        <%= link_to unpin_todo_path(todo), method: :post, class: "btn btn-sm btn-default pinned", title: "Pinned for today. Click to unpin" do %>
             <i class="fa fa-thumb-tack"></i>
         <% end %>
+      <!-- Need to undo pin if pinned_date is not today and add to flow below -->
       <% else %>
-        <%= link_to pinned_todo_path(todo), method: :post, class: "btn btn-sm btn-default" do %>
+        <%= link_to pinned_todo_path(todo), method: :post, class: "btn btn-sm btn-default", title: "Pin for today" do %>
             <i class="fa fa-thumb-tack"></i>
         <% end %>
       <% end %>
 
       
-
-      <%= link_to complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button', data: {confirm: "Are you sure you want to mark #{todo.title} as done?"} do %>
-        <i class="fa fa-check"></i>
+      <% if todo.done? %>
+        <%= link_to not_complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button completed', data: {confirm: "Are you sure you want to mark #{todo.title} as NOT completed?"} do %>
+          <i class="fa fa-check"></i>
+        <% end %>
+      <% else %>
+        <%= link_to complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button', data: {confirm: "Are you sure you want to mark #{todo.title} as done?"} do %>
+          <i class="fa fa-check"></i>
+        <% end %>
       <% end %>
+
+
       <%= link_to edit_todo_path(todo), class: 'btn btn-sm btn-default' do %>
         <i class="fa fa-edit"></i>
       <% end %>
