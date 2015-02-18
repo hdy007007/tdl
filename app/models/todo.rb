@@ -8,6 +8,12 @@ class Todo < ActiveRecord::Base
   validates :description, presence: true
   validate :date_cannot_be_in_past 
 
+  # scope :pinned, -> { where(time_pinned: Date.today) }
+  # scope :unpinned, -> { where.not(time_pinned: [Date.today, nil]) }
+  # scope :order_by_deadline, -> { order('deadline IS NULL, deadline ASC') }
+  # scope :completed, -> { where(done: true) }
+  # scope :not_completed, -> { where(done: [false, nil]) }
+
   def date_cannot_be_in_past
     if deadline && deadline < Time.now 
       errors.add(:deadline, 'Deadline cannot be in the past')
@@ -15,19 +21,17 @@ class Todo < ActiveRecord::Base
   end
 
   def self.order_by_deadline
-    group1 = []
-    group1 << where(pinned: true)
-
-    group2 = []
-    group2 << order('deadline IS NULL, deadline ASC')
-
-    todos = [group1, group2].flatten.uniq
-    todos
+    results = []
+    results << where(time_pinned: Date.today)
+    results << order('deadline IS NULL, deadline ASC')
+    results.flatten.uniq
   end
 
   def todo_done?
     done
   end
-  
 
+  def pinned?
+    time_pinned == Date.today    
+  end
 end

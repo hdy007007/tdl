@@ -11,7 +11,7 @@
     <p class="pull-right">
 
       <% unless todo.done %>
-        <% if todo.pinned? && todo.time_pinned == Date.today %>
+        <% if todo.pinned? %>
           <%= link_to unpin_todo_path(todo), method: :post, class: "btn btn-sm btn-default pinned", title: "Pinned for today. Click to unpin" do %>
               <i class="fa fa-thumb-tack"></i>
           <% end %>

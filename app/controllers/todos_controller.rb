@@ -31,8 +31,8 @@ class TodosController < ApplicationController
   def show
     @comment = Comment.new
   end
-
-  def edit
+def
+   edit
   end
 
   def update
@@ -58,16 +58,12 @@ class TodosController < ApplicationController
 
   def pinned
     flash[:notice] = 'Todo pinned for today'
-    @todo.pinned = true
-    @todo.update_attribute(:pinned, true)
     @todo.update_attribute(:time_pinned, Time.now)
     redirect_to root_path
   end
 
   def unpin
     flash[:notice] = 'Todo unpinned'
-    @todo.pinned = false
-    @todo.update_attribute(:pinned, false)
     @todo.update_attribute(:time_pinned, nil)
     redirect_to root_path    
   end
