@@ -2,7 +2,7 @@
 
 <p><%= @todo.description %></p>
 <% if @todo.deadline %>
-  <p>Deadline: <%= time_left(@todo.deadline) %></p>
+  <p>Deadline: <%= time_left_in_words_long_version(@todo.deadline) %></p>
 <% else %>
   <p>No deadline</p>
 <% end %>
