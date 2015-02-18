@@ -1,0 +1,17 @@
+.well.red{border: 1px solid #d9534f;}
+.well.amber{border: 1px solid #f0ad4e;}
+.well.green{border: 1px solid #5cb85c;}
+
+a.complete_button{
+  border: 1px solid #5cb85c;
+}
+div.info p, div.info h5{margin: 0 0 0 10px; line-height: 30px; float: left;}
+div.todo_item {
+  margin: 0 0 10px 0;
+  border: 1px solid #e5e5e5;
+  border-width: 1px 0;
+  padding: 10px 5px;
+}
+div.todo_item p.pull-right{margin-bottom: 0;}
+a.pinned{background-color: #5cb85c;}
+a.pinned i{color: white;}

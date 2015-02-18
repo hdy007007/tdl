@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post '/todos/:id/complete', to: 'todos#complete', as: :complete_todo
   get '/todos/completed', to: 'todos#completed'
 
+  post 'todos/:id/pinned', to: 'todos#pinned', as: :pinned_todo
+  post 'todos/:id/unpin', to: 'todos#unpin', as: :unpin_todo
+
   resources :users, only: [:show, :create, :edit, :update]
 
   resources :todos do

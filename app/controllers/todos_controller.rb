@@ -1,6 +1,6 @@
 class TodosController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :complete]
-  before_action :set_user, only: [:index, :show, :edit, :new, :create, :complete, :completed]
+  before_action :set_post, only: [:show, :edit, :update, :complete, :pinned, :unpin]
+  before_action :set_user, only: [:index, :show, :edit, :new, :create, :complete, :completed, :pinned, :unpin]
 
   before_action :require_user, except: [:index]
 
@@ -49,6 +49,20 @@ class TodosController < ApplicationController
     @todo.done = true
     @todo.save
     redirect_to root_path
+  end
+
+  def pinned
+    flash[:notice] = 'Todo pinned for today'
+    @todo.pinned = true
+    @todo.save
+    redirect_to root_path
+  end
+
+  def unpin
+    flash[:notice] = 'Todo unpinned'
+    @todo.pinned = false
+    @todo.save
+    redirect_to root_path    
   end
 
   def destroy

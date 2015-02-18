@@ -15,7 +15,14 @@ class Todo < ActiveRecord::Base
   end
 
   def self.order_by_deadline
-    order('deadline IS NULL, deadline ASC')
+    group1 = []
+    group1 << where(pinned: true)
+
+    group2 = []
+    group2 << order('deadline IS NULL, deadline ASC')
+
+    todos = [group1, group2].flatten.uniq
+    todos
   end
 
   def todo_done?

@@ -1,34 +1,51 @@
 <% if todo.deadline.nil? %>
-  <div class="well">
+  <div class="todo_item">
 <% elsif lights(todo.deadline) == :red %>
-  <div class="well red">
+  <div class="todo_item red">
 <% elsif lights(todo.deadline) == :amber %>
-  <div class="well amber">
+  <div class="todo_item amber">
 <% else %>
-  <div class="well green">
+  <div class="todo_item green">
 <% end %>
+
     <p class="pull-right">
-      <%= link_to edit_todo_path(todo), class: 'btn' do %>
-        <i class="fa fa-pencil"></i>
+
+      <% if todo.pinned %>
+        <%= link_to unpin_todo_path(todo), method: :post, class: "btn btn-sm btn-default pinned" do %>
+            <i class="fa fa-thumb-tack"></i>
+        <% end %>
+      <% else %>
+        <%= link_to pinned_todo_path(todo), method: :post, class: "btn btn-sm btn-default" do %>
+            <i class="fa fa-thumb-tack"></i>
+        <% end %>
       <% end %>
-      <%= link_to todo_path(todo), class: 'btn', method: :delete, data: {confirm: "Are you sure you want to delete #{todo.title}"} do %>
-        <i class="fa fa-trash-o"></i>
+
+      
+
+      <%= link_to complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button', data: {confirm: "Are you sure you want to mark #{todo.title} as done?"} do %>
+        <i class="fa fa-check"></i>
+      <% end %>
+      <%= link_to edit_todo_path(todo), class: 'btn btn-sm btn-default' do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+      <%= link_to todo_path(todo), class: 'btn btn-sm btn-default', method: :delete, data: {confirm: "Are you sure you want to delete #{todo.title}"} do %>
+        <i class="fa fa-bomb"></i>
       <% end %>
     </p>
-    <h2><%= link_to todo.title, todo_path(todo) %></h2>
-    <p><%= todo.description %></p>
-    <% if todo.deadline %>
-      <p>Deadline: <%= time_left(todo.deadline) %></p>
-    <% else %>
-      <p>No deadline</p>
-    <% end %>
-    <p>Notes: <span class="badge"><%= todo.comments.count %></span></p>
-    <% todo.categories.each do |category| %>
-      <span class="label label-info"><%= link_to category.name, category_path(category) %></span>
-    <% end %>
-    <div class="pull-right">  
-      <%= link_to complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button', data: {confirm: "Are you sure you want to mark #{todo.title} as done?"} do %>
-        <span class="glyphicon glyphicon-check" ></span> done
+
+    
+          <h5><%= link_to todo.title, todo_path(todo) %></h5>
+
+    <div class="info clearfix pull-right">
+      <% if todo.deadline %>     
+        <p><%= time_left_in_words_short_version(todo.deadline) %></p>
       <% end %>
-    </div>
+
+      <p><%= notes_indicator(todo) %> <span class="badge"><%= todo.comments.count %></span></p>
+    </div>  
+    <i class="fa fa-tags" title="categories"></i>
+    <% todo.categories.each do |category| %>
+      <span class="label label-default"><%= link_to category.name, category_path(category) %></span>
+    <% end %>
+
 </div>
