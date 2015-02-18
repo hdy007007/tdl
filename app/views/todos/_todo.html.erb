@@ -32,10 +32,7 @@
         <i class="fa fa-bomb"></i>
       <% end %>
     </p>
-
-    
-          <h5><%= link_to todo.title, todo_path(todo) %></h5>
-
+    <h5><%= link_to todo.title, todo_path(todo) %></h5>
     <div class="info clearfix pull-right">
       <% if todo.deadline %>     
         <p><%= time_left_in_words_short_version(todo.deadline) %></p>

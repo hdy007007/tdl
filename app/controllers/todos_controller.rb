@@ -54,14 +54,14 @@ class TodosController < ApplicationController
   def pinned
     flash[:notice] = 'Todo pinned for today'
     @todo.pinned = true
-    @todo.save
+    @todo.update_attribute(:pinned, true)
     redirect_to root_path
   end
 
   def unpin
     flash[:notice] = 'Todo unpinned'
     @todo.pinned = false
-    @todo.save
+    @todo.update_attribute(:pinned, false)
     redirect_to root_path    
   end
 

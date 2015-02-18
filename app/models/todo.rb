@@ -28,5 +28,6 @@ class Todo < ActiveRecord::Base
   def todo_done?
     done
   end
+  
 
 end
