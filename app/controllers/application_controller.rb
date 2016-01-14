@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless logged_in?
-      flash[:error] = 'Must be lgoged in to do that'
+      flash[:error] = '必须先登录！'
       redirect_to root_path
     end
   end

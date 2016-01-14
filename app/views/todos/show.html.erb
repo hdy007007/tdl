@@ -2,9 +2,9 @@
 
 <p><%= @todo.description %></p>
 <% if @todo.deadline %>
-  <p>Deadline: <%= time_left_in_words_long_version(@todo.deadline) %></p>
+  <p>期限: <%= time_left_in_words_long_version(@todo.deadline) %></p>
 <% else %>
-  <p>No deadline</p>
+  <p>无期限</p>
 <% end %>
 <p>Notes: <span class="badge"><%= @todo.comments.count %></span></p>
 <p>
@@ -16,11 +16,11 @@
 <%= form_for [@todo, @comment] do |f| %>
 
     <div class="form-group span8">
-      <%= f.label :body, 'Make notes' %>
+      <%= f.label :body, '笔记' %>
       <%= f.text_area :body, rows: 5, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= f.submit 'Add note', class: 'btn btn-primary' %>  
+      <%= f.submit '添加笔记', class: 'btn btn-primary' %>  
     </div>
 <% end %>
 

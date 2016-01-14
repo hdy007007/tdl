@@ -12,12 +12,12 @@
 
       <% unless todo.done %>
         <% if todo.pinned? %>
-          <%= link_to unpin_todo_path(todo), method: :post, class: "btn btn-sm btn-default pinned", title: "Pinned for today. Click to unpin" do %>
+          <%= link_to unpin_todo_path(todo), method: :post, class: "btn btn-sm btn-default pinned", title: "取消置顶" do %>
               <i class="fa fa-thumb-tack"></i>
           <% end %>
         <!-- Need to undo pin if pinned_date is not today and add to flow below -->
         <% else %>
-          <%= link_to pinned_todo_path(todo), method: :post, class: "btn btn-sm btn-default", title: "Pin for today" do %>
+          <%= link_to pinned_todo_path(todo), method: :post, class: "btn btn-sm btn-default", title: "置顶" do %>
               <i class="fa fa-thumb-tack"></i>
           <% end %>
         <% end %>
@@ -25,11 +25,11 @@
 
       
       <% if todo.done? %>
-        <%= link_to not_complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button completed', title: "Click to reinstate todo", data: {confirm: "Are you sure you want to mark #{todo.title} as NOT completed?"} do %>
+        <%= link_to not_complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button completed', title: "取消已完成", data: {confirm: "确定 #{todo.title} 未完成？"} do %>
           <i class="fa fa-check"></i>
         <% end %>
       <% else %>
-        <%= link_to complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button', title: "Click to mark todo as done", data: {confirm: "Are you sure you want to mark #{todo.title} as done?"} do %>
+        <%= link_to complete_todo_path(todo), method: :post, class: 'btn btn-sm btn-default complete_button', title: "已完成", data: {confirm: "确定 #{todo.title} 完成？"} do %>
           <i class="fa fa-check"></i>
         <% end %>
       <% end %>
@@ -38,7 +38,7 @@
       <%= link_to edit_todo_path(todo), class: 'btn btn-sm btn-default edit' do %>
         <i class="fa fa-edit"></i>
       <% end %>
-      <%= link_to todo_path(todo), class: 'btn btn-sm btn-default destroy', title: "Destroy this Todo forever!", method: :delete, data: {confirm: "Are you sure you want to delete #{todo.title}"} do %>
+      <%= link_to todo_path(todo), class: 'btn btn-sm btn-default destroy', title: "删除", method: :delete, data: {confirm: "确定删除？ #{todo.title}"} do %>
         <i class="fa fa-bomb"></i>
       <% end %>
     </p>

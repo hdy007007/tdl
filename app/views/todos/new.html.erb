@@ -1,25 +1,25 @@
-<%= render 'shared/content_title', title: 'Add new ToDo' %>
+<%= render 'shared/content_title', title: '添加项目' %>
 <%= render 'errors', the_object: @todo %>
 
 
 <div class="well">
   <%= form_for @todo, :html => {class: 'form-horizontal'} do |f| %>
     <div class="form-group">
-      <%= f.label :title, class: 'col-sm-2 control-label' %>
+      <%= f.label :标题, class: 'col-sm-2 control-label' %>
       <div class="col-sm-10">
       <%= f.text_field :title, class: 'form-control', autofocus: true %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :description, class: 'col-sm-2 control-label' %>
+      <%= f.label :内容, class: 'col-sm-2 control-label' %>
       <div class="col-sm-10">
       <%= f.text_area :description, class: 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
-        <%= f.label :Categories, class: 'col-sm-2 control-label' %>
+        <%= f.label :标签, class: 'col-sm-2 control-label' %>
       <div class="checkbox col-sm-10">
       <%= f.collection_check_boxes :category_ids, current_user.categories.all, :id, :name do |cb| %>
         <% cb.label(class: "checkbox-inline"){cb.check_box(class: "checkbox-inline") + cb.text} %>
@@ -33,7 +33,7 @@
 
 
     <div class="form-group">
-        <%= f.label :deadline, class: 'col-sm-2 control-label' %>
+        <%= f.label :期限, class: 'col-sm-2 control-label' %>
         <div class='input-group date col-sm-8' id='datetimepicker1'>
 
           <%= f.text_field :deadline, class: 'form-control', :ampm => true, :minute_step => 5, :include_blank => true %>
@@ -53,8 +53,8 @@
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit(@todo.new_record? ? "Add ToDo" : "Update Todo", class: 'btn btn-default') %>
-        <%= link_to 'Cancel', root_path, class: 'btn btn-default' %>
+        <%= f.submit(@todo.new_record? ? "添加" : "Update Todo", class: 'btn btn-default') %>
+        <%= link_to '取消', root_path, class: 'btn btn-default' %>
 
       </div>
     </div>

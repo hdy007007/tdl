@@ -2,20 +2,20 @@
 
  <div class="jumbotron">
 
-    <h1>GotToDo</h1>
+    <h1>Dogoing</h1>
     <% if logged_in? %>
       <%= link_to new_todo_path, class: 'btn btn-lg btn-success' do %>
-        <span class="glyphicon glyphicon-pencil" ></span> Add ToDo
+        <span class="glyphicon glyphicon-pencil" ></span> 添加项目
       <% end %>
     <% end %>
     <% unless logged_in? %>
-      <p>A place to organize all your tasks. Create, View, Edit and generally manage everything you have to do. Ready to get started?...</p>
+      <p>To Do List！Just Do IT！</p>
 
       <%= link_to register_path, class: 'btn btn-lg btn-primary' do %>
-      <span class="glyphicon glyphicon-pencil" ></span> saadsadsad
+      <span class="glyphicon glyphicon-pencil" ></span> 注册
       <% end %>
       <%= link_to login_path, class: 'btn btn-lg btn-success' do %>
-      <span class="glyphicon glyphicon-pencil" ></span> Login
+      <span class="glyphicon glyphicon-pencil" ></span> 登录
       <% end %>
     <% end %>
 

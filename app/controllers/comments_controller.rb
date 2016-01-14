@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
   
     if @comment.save
-      flash[:notice] = 'Note added'
+      flash[:notice] = '增加成功'
       redirect_to todo_path(@todo)
     else
       render 'todos/show'

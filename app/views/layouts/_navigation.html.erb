@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'GotToDo', root_path, class: 'navbar-brand' %> 
+      <%= link_to 'Dogoing', root_path, class: 'navbar-brand' %> 
 
     </div>
 
@@ -17,16 +17,6 @@
     <% if logged_in? %>
 
       <ul class="nav navbar-nav navbar-right">
-        <li>                
-          <%= link_to new_bug_path, {title: 'Report a bug'} do %>
-            <i class="fa fa-bug"></i>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_feature_path, {title: 'Suggest a new feature'} do %>
-            <i class="fa fa-bullhorn"></i>
-          <% end %>
-        </li>
         <li class="dropdown">
           <%= link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do %>
             <%= @user.username %> <span class="caret" ></span>
@@ -35,19 +25,19 @@
             <li>
               <%= link_to(user_path(@user)) do %>
               <span class="glyphicon glyphicon-user"></span>
-              View Profile
+              查看资料
               <% end %>
             </li>
             <li>
               <%= link_to(edit_user_path(@user)) do %>
               <span class="glyphicon glyphicon-wrench"></span>
-              Edit Profile
+              编辑资料
               <% end %>
             </li>
             <li>
               <%= link_to(logout_path) do %>
               <span class="glyphicon glyphicon-log-out"></span>
-              Logout
+              退出
               <% end %>
             </li>
           </ul>
@@ -62,7 +52,7 @@
         <% if logged_in? %>
           <li class="dropdown">
             <%= link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do %>
-              Categories <span class="caret" ></span>
+              标签 <span class="caret" ></span>
             <% end %>
 
 
@@ -78,17 +68,16 @@
                 <li>
                   <%= link_to(new_category_path) do %>
                     <span class="glyphicon glyphicon-plus-sign"></span>
-                    New Category
+                    添加新标签
                   <% end %>
                 </li>
               <% end %>
             </ul>
 
           </li>
-          <li><%= link_to 'Add Todo', new_todo_path, class: '' %></li>         
-          <li><%= link_to 'Completed Todos', todos_completed_path, class: '' %></li>         
-        <% else %> 
-          <li><%= link_to 'Log in', login_path, class: '' %></li> 
+          <li><%= link_to '添加项目', new_todo_path, class: '' %></li>         
+          <li><%= link_to '已完成', todos_completed_path, class: '' %></li>         
+       
         <% end %>
 
 

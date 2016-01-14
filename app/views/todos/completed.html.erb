@@ -1,4 +1,4 @@
-<%= render 'shared/content_title', title: 'Completed todos' %>
+<%= render 'shared/content_title', title: '已完成' %>
 
 <% if logged_in? %>
   <% @todos.order_by_deadline.each do |todo| %>

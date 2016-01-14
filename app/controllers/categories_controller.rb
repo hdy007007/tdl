@@ -12,10 +12,10 @@ class CategoriesController < ApplicationController
     @category = Category.new(cat_params)
 
     if @category.save
-      flash[:notice] = 'Category added'
+      flash[:notice] = '已添加标签'
       redirect_to root_path
     else
-      flash[:error] = 'An error message'
+      flash[:error] = '一个错误的标签'
       render :new
     end
     @user.categories << @category
@@ -46,11 +46,11 @@ class CategoriesController < ApplicationController
       begin
         @category = current_user.categories.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = "The category you're looking for could not be found."
+        flash[:error] = "此标签不存在！"
         redirect_to root_path
       end
     else
-      flash[:error] = 'You must be logged in to do that'
+      flash[:error] = '你必须先登录！'
       redirect_to root_path
     end
   end

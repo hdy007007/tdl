@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = 'Thanks for registering - You are now logged in'
+      flash[:notice] = '已注册，您已登录'
       session[:user_id] = @user.id
       redirect_to root_path
     else
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = 'Account updated'
+      flash[:notice] = '用户资料已更新'
       redirect_to user_path
     else
       render :edit
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
   def require_same_user
     if current_user != @profile
-      flash[:error] = 'You cannot do that'
+      flash[:error] = '你不能使用这个用户名'
       redirect_to root_path
     end
   end

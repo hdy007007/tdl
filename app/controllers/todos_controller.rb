@@ -21,7 +21,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
     @todo.user = current_user
     if @todo.save
-      flash[:notice] = "ToDo added!"
+      flash[:notice] = "已添加!"
       redirect_to root_path
     else
       render 'new'
@@ -37,7 +37,7 @@ def
 
   def update
     if @todo.update(todo_params)
-      flash[:notice] = 'Todo updated'
+      flash[:notice] = '已修改'
       redirect_to root_path
     else
       render :edit
@@ -45,25 +45,25 @@ def
   end
 
   def complete
-    flash[:notice] = 'Todo completed!'
+    flash[:notice] = '已标注为完成!'
     @todo.update_attribute(:done, true)
     redirect_to root_path
   end
 
   def not_complete
-    flash[:notice] = 'Todo marked not complete and added back to your todo list!'
+    flash[:notice] = '已标注为未完成，请继续!'
     @todo.update_attribute(:done, false)
     redirect_to root_path    
   end
 
   def pinned
-    flash[:notice] = 'Todo pinned for today'
+    flash[:notice] = '已置顶'
     @todo.update_attribute(:time_pinned, Time.now)
     redirect_to root_path
   end
 
   def unpin
-    flash[:notice] = 'Todo unpinned'
+    flash[:notice] = '取消置顶'
     @todo.update_attribute(:time_pinned, nil)
     redirect_to root_path    
   end
@@ -85,11 +85,11 @@ def
       begin
       @todo = current_user.todos.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = "The todo you're looking for could not be found."
+        flash[:error] = "找不到这个项目"
         redirect_to root_path
       end
     else
-      flash[:error] = 'You must be logged in to do that'
+      flash[:error] = '你必须先登录'
       redirect_to root_path
     end
   end
