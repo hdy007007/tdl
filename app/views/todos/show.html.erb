@@ -28,7 +28,7 @@
 <% @todo.comments.reverse.each do |comment|%>
 <div class="well span8">
   <p><em><%= comment.body %></em></p>
-  <%= link_to comment.user.first_name %><span class="quiet"> left this note </span><%= time_ago(comment.created_at) %>
+  <%= link_to comment.user.first_name %><span class="quiet"> 添加了这条笔记 </span><%= time_ago(comment.created_at) %>
  <span class="quiet">ago</span></div>
 <% end %>
 
